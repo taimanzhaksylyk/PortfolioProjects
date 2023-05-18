@@ -1,8 +1,10 @@
+--Looking at the data
 select *
 from PortfolioP1..CovidDeaths$
 where continent is not null
 order by 3, 4
 
+--Looking at the data
  select * 
 from PortfolioP1..CovidVaccinations$
 where continent is not null
@@ -66,7 +68,7 @@ from PortfolioP1..CovidDeaths$
 where continent is not null and total_deaths > 0
 order by 1, 2
 
-
+--Performing Join
 select * 
 from PortfolioP1..CovidDeaths$ as dea
 join PortfolioP1..CovidVaccinations$ as vac
@@ -124,7 +126,6 @@ order by vac_rate desc
 
 
 --Create view to store date for data visualization
-
 Create View VacRateByCountry
 as 
 with PopVsVac (Continent, Location, Date, Population, new_vac, total_vac_count)
@@ -140,6 +141,7 @@ join PortfolioP1..CovidVaccinations$ as vac
 where vac.continent is not null
 )
 
+--Query for Data Visualization
 select Location, max(Date) as latest_date, Population, max(total_vac_count) as total_vac_count, (max(total_vac_count))/Population*100 as vac_rate
 from PopVsVac
 group by Location, Population
