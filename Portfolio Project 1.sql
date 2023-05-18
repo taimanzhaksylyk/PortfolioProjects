@@ -143,5 +143,3 @@ where vac.continent is not null
 select Location, max(Date) as latest_date, Population, max(total_vac_count) as total_vac_count, (max(total_vac_count))/Population*100 as vac_rate
 from PopVsVac
 group by Location, Population
-
-select * from VacRateByCountry
